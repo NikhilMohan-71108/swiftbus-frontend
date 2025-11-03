@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Bus, Clock, Shield, CreditCard, MapPin, ArrowRight, Star, Check, Zap, Users, TrendingUp, Menu, X, Calendar, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+ import Footer from './Footer';
 
-export default function Home() {
+
+export default function LandingPage() {
+  const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -251,10 +255,12 @@ export default function Home() {
             
             {/* Desktop Auth Buttons */}
             <div className="hidden md:flex items-center gap-3 animate-fadeInRight">
-              <button className="px-5 py-2.5 text-gray-700 font-semibold hover:text-indigo-600 transition-all duration-300 hover:scale-105">
+              <button className="px-5 py-2.5 text-gray-700 font-semibold hover:text-indigo-600 transition-all duration-300 hover:scale-105"
+              onClick={()=>navigate("/login")}>
                 Login
               </button>
-              <button className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <button className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+              onClick={()=>navigate("/registration")}>
                 Sign Up Free
               </button>
             </div>
@@ -281,7 +287,8 @@ export default function Home() {
                 <a href="#" className="px-4 py-3 text-gray-700 font-medium hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">My Bookings</a>
                 <a href="#" className="px-4 py-3 text-gray-700 font-medium hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">Help</a>
                 <div className="border-t border-gray-200 pt-3 space-y-2">
-                  <button className="w-full px-4 py-3 text-indigo-600 font-semibold hover:bg-indigo-50 rounded-lg transition-colors">
+                  <button className="w-full px-4 py-3 text-indigo-600 font-semibold hover:bg-indigo-50 rounded-lg transition-colors"
+                  >
                     Login
                   </button>
                   <button className="w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
@@ -545,7 +552,8 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <button className="px-12 py-5 bg-white text-indigo-600 text-lg font-bold rounded-2xl hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:scale-110 hover:rotate-2 flex items-center gap-2">
+            <button className="px-12 py-5 bg-white text-indigo-600 text-lg font-bold rounded-2xl hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:scale-110 hover:rotate-2 flex items-center gap-2"
+              onClick={()=>navigate("/registration")}>
               Create Free Account
               <Check className="w-5 h-5" />
             </button>
@@ -570,77 +578,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div className="animate-on-scroll opacity-0" style={isVisible[10] ? {animation: 'fadeInUp 0.6s ease-out forwards'} : {}}>
-              <div className="flex items-center gap-3 mb-4 group cursor-pointer">
-                <div className="relative bg-gradient-to-br from-indigo-600 to-purple-600 p-2 rounded-xl hover:scale-110 transition-transform duration-300 hover-wobble">
-                  <Bus className="w-6 h-6 text-white group-hover:animate-bounce-subtle" />
-                  <div className="absolute inset-0 bg-white rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                </div>
-                <div>
-                  <span className="text-xl font-bold group-hover:text-indigo-400 transition-colors duration-300">SwiftBus</span>
-                  <p className="text-xs text-gray-400">Travel Reimagined</p>
-                </div>
-              </div>
-              <p className="text-gray-400 leading-relaxed">Making bus travel simple, safe, and smart for everyone.</p>
-            </div>
-            
-            {[
-              {title: 'Company', links: ['About Us', 'Careers', 'Press Kit', 'Blog']},
-              {title: 'Support', links: ['Help Center', 'Contact Us', 'Safety', 'Terms']},
-              {title: 'Download App', links: null}
-            ].map((section, sIndex) => (
-              <div 
-                key={sIndex}
-                className="animate-on-scroll opacity-0"
-                style={isVisible[11 + sIndex] ? {animation: `fadeInUp 0.6s ease-out ${sIndex * 0.1}s forwards`} : {}}
-              >
-                <h5 className="font-bold mb-4 text-lg">{section.title}</h5>
-                {section.links ? (
-                  <ul className="space-y-3 text-gray-400">
-                    {section.links.map((link, lIndex) => (
-                      <li key={lIndex}>
-                        <a href="#" className="hover:text-white transition-all duration-300 hover:translate-x-2 inline-block">
-                          {link}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="space-y-3">
-                    {['App Store', 'Google Play'].map((store, index) => (
-                      <a 
-                        key={index}
-                        href="#" 
-                        className="block px-4 py-3 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 text-center font-semibold hover:scale-105"
-                      >
-                        {store}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400">
-            <p>&copy; 2025 SwiftBus. All rights reserved.</p>
-            <div className="flex gap-6">
-              {['Privacy', 'Terms', 'Cookie Policy'].map((link, index) => (
-                <a 
-                  key={index}
-                  href="#" 
-                  className="hover:text-white transition-all duration-300 hover:scale-110"
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+     <Footer></Footer>
     </div>
   );
 }
